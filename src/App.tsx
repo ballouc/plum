@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="overscroll-none">
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,7 +16,7 @@ function App() {
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }
 
