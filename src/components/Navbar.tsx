@@ -1,19 +1,21 @@
+import { Link } from "react-router";
+
 export default function Navbar() {
   return (
     <nav className="flex bg-gray-800 text-white justify-between items-center h-16 px-4">
-      <a href="/" className="text-3xl no-underline text-inherit">
+      <Link to="/" className="text-3xl no-underline text-inherit">
         Plum
-      </a>
+      </Link>
       <ul className="m-0 p-0 list-none flex gap-4">
         <li>
-          <a href="/about" className="text-inherit no-underline px-4">
+          <Link to="/about" className="text-inherit no-underline px-4">
             About Us
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/contact" className="text-inherit no-underline px-4">
+          <Link to="/contact" className="text-inherit no-underline px-4">
             Contact
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

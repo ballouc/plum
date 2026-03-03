@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import plumLogo from "../assets/plum.png";
 import LavaBackground from "../components/LavaBackground";
 
@@ -13,9 +14,12 @@ export default function Home() {
         <h1 className="text-white text-3xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
           Home-grown manufacturing.
         </h1>
-        <button className="mt-2 px-8 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-white font-medium hover:bg-white/20 transition-all cursor-pointer shadow-lg">
+        <Link
+          to="/contact"
+          className="mt-2 px-8 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-white font-medium hover:bg-white/20 transition-all shadow-lg"
+        >
           Learn about us
-        </button>
+        </Link>
       </div>
     </LavaBackground>
   );
