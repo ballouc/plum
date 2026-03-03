@@ -1,4 +1,5 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
+import LavaBackground from "../components/LavaBackground";
 
 export default function Contact() {
   const [phone, setPhone] = useState("");
@@ -36,8 +37,8 @@ export default function Contact() {
   }
 
   return (
-    <div className="flex items-stretch justify-center w-full min-h-[calc(100vh-4rem)] bg-plum">
-      <div className="flex flex-col md:flex-row w-full max-w-4xl m-auto shadow-lg rounded-lg overflow-hidden">
+    <LavaBackground className="flex items-stretch justify-center w-full min-h-[calc(100vh-4rem)]">
+      <div className="relative z-10 flex flex-col md:flex-row w-full max-w-4xl m-auto shadow-lg rounded-lg overflow-hidden">
         {/* Left info panel */}
         <div className="flex flex-col justify-center gap-6 bg-plum-gradient-3 text-white p-10 md:w-2/5">
           <h1 className="text-4xl font-bold">Contact Us</h1>
@@ -173,6 +174,6 @@ export default function Contact() {
           </button>
         </form>
       </div>
-    </div>
+    </LavaBackground>
   );
 }
