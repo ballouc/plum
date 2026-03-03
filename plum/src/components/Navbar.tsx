@@ -1,3 +1,5 @@
+import "../css/Navbar.css";
+
 export default function Navbar() {
   return (
     <nav className="nav">
@@ -6,10 +8,10 @@ export default function Navbar() {
       </a>
       <ul>
         <li>
-          <a href="../About.tsx">About</a>
+          <a href="../about">About Us</a>
         </li>
         <li>
-          <a href="../Contact.tsx">Contact</a>
+          <a href="../contact">Contact</a>
         </li>
       </ul>
     </nav>
