@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+    --font-display: "Satoshi", "sans-serif";
+    --color-plum: #dda0dd;
+    --color-plum-gradient-1: #c242bf;
+    --color-plum-gradient-2: #9e339c;
+    --color-plum-gradient-3: #7b287a;
+    --color-plum-gradient-4: #591d58;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
