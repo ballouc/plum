@@ -1,5 +1,29 @@
-import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useState, type FormEvent, type ChangeEvent, type ReactNode } from "react";
 import LavaBackground from "../components/LavaBackground";
+
+const inputCls =
+  "border border-neutral-300 rounded px-3 py-2 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-plum-gradient-2 w-full";
+
+function FormField({
+  label,
+  htmlFor,
+  required = false,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <label htmlFor={htmlFor} className="text-sm font-medium text-neutral-700">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
 
 export default function Contact() {
   const [phone, setPhone] = useState("");
@@ -37,11 +61,11 @@ export default function Contact() {
   }
 
   return (
-    <LavaBackground className="flex items-stretch justify-center w-full min-h-[calc(100vh-4rem)]">
-      <div className="relative z-10 flex flex-col md:flex-row w-full max-w-4xl m-auto shadow-lg rounded-lg overflow-hidden">
+    <LavaBackground className="flex items-center justify-center w-full min-h-screen px-4 py-24 md:py-8">
+      <div className="relative z-10 flex flex-col md:flex-row w-full max-w-4xl shadow-lg rounded-lg overflow-hidden">
         {/* Left info panel */}
-        <div className="flex flex-col justify-center gap-6 bg-plum-gradient-3 text-white p-10 md:w-2/5">
-          <h1 className="text-4xl font-bold">Contact Us</h1>
+        <div className="flex flex-col justify-center gap-6 bg-plum-gradient-3 text-white p-8 md:p-10 md:w-2/5">
+          <h1 className="text-3xl md:text-4xl font-bold">Contact Us</h1>
           <p className="text-white/80 text-sm leading-relaxed">
             Have a question or want to work with us? Fill out the form and we'll
             get back to you as soon as possible.
@@ -59,60 +83,19 @@ export default function Contact() {
           className="bg-white p-8 flex flex-col gap-4 md:w-3/5"
         >
           <div className="flex gap-4">
-            <div className="flex flex-col gap-1 flex-1 min-w-0">
-              <label
-                htmlFor="firstName"
-                className="text-sm font-medium text-neutral-700"
-              >
-                First Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="firstName"
-                type="text"
-                required
-                minLength={1}
-                className="border border-neutral-300 rounded px-3 py-2 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-plum-gradient-2 w-full"
-              />
-            </div>
-            <div className="flex flex-col gap-1 flex-1 min-w-0">
-              <label
-                htmlFor="lastName"
-                className="text-sm font-medium text-neutral-700"
-              >
-                Last Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                required
-                minLength={1}
-                className="border border-neutral-300 rounded px-3 py-2 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-plum-gradient-2 w-full"
-              />
-            </div>
+            <FormField label="First Name" htmlFor="firstName" required>
+              <input id="firstName" type="text" required minLength={1} className={inputCls} />
+            </FormField>
+            <FormField label="Last Name" htmlFor="lastName" required>
+              <input id="lastName" type="text" required minLength={1} className={inputCls} />
+            </FormField>
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="email"
-              className="text-sm font-medium text-neutral-700"
-            >
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              className="border border-neutral-300 rounded px-3 py-2 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-plum-gradient-2"
-            />
-          </div>
+          <FormField label="Email" htmlFor="email" required>
+            <input id="email" type="email" required className={inputCls} />
+          </FormField>
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="phone"
-              className="text-sm font-medium text-neutral-700"
-            >
-              Phone Number <span className="text-red-500">*</span>
-            </label>
+          <FormField label="Phone Number" htmlFor="phone" required>
             <input
               id="phone"
               type="tel"
@@ -122,17 +105,11 @@ export default function Contact() {
               value={phone}
               onChange={handlePhoneChange}
               placeholder="(555) 123-4567"
-              className="border border-neutral-300 rounded px-3 py-2 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-plum-gradient-2"
+              className={inputCls}
             />
-          </div>
+          </FormField>
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="message"
-              className="text-sm font-medium text-neutral-700"
-            >
-              Message
-            </label>
+          <FormField label="Message" htmlFor="message">
             <textarea
               id="message"
               maxLength={500}
@@ -140,20 +117,12 @@ export default function Contact() {
               rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="border border-neutral-300 rounded px-3 py-2 text-neutral-800 resize-none focus:outline-none focus:ring-2 focus:ring-plum-gradient-2"
+              className={`${inputCls} resize-none`}
             />
-            <span className="text-xs text-neutral-500 text-right">
-              {message.length}/500
-            </span>
-          </div>
+            <span className="text-xs text-neutral-500 text-right">{message.length}/500</span>
+          </FormField>
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="attachment"
-              className="text-sm font-medium text-neutral-700"
-            >
-              Attachment
-            </label>
+          <FormField label="Attachment" htmlFor="attachment">
             <input
               id="attachment"
               type="file"
@@ -161,10 +130,8 @@ export default function Contact() {
               onChange={handleFileChange}
               className="text-sm text-neutral-600 file:mr-3 file:rounded file:border-0 file:bg-plum-gradient-2 file:px-3 file:py-2 file:text-white file:cursor-pointer"
             />
-            {fileError && (
-              <span className="text-xs text-red-500">{fileError}</span>
-            )}
-          </div>
+            {fileError && <span className="text-xs text-red-500">{fileError}</span>}
+          </FormField>
 
           <button
             type="submit"

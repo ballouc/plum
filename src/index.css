@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html, body {
+    overscroll-behavior: none;
+}
+
 @theme {
     --font-display: "Satoshi", "sans-serif";
     --color-plum: #dda0dd;
@@ -41,4 +45,8 @@
     0%, 100% { transform: translate(0%, 0%) scale(1); }
     35%       { transform: translate(10%, 16%) scale(1.08); }
     70%       { transform: translate(-12%, -8%) scale(0.93); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lava-blob { animation: none !important; }
 }
