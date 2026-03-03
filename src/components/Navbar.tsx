@@ -1,5 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "react-router";
+import logoText from "../assets/plum_logo_text.png";
+
+function NavLink({ to, children }: { to: string; children: ReactNode }) {
+  return (
+    <li>
+      <Link to={to} className="text-sm md:text-base text-inherit no-underline px-2 md:px-4">
+        {children}
+      </Link>
+    </li>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,20 +31,12 @@ export default function Navbar() {
           : "mx-3 md:mx-4 mt-2 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg"
       }`}
     >
-      <Link to="/" className="text-2xl md:text-3xl no-underline text-inherit">
-        Plum
+      <Link to="/" className="no-underline text-inherit">
+        <img src={logoText} className="h-8 md:h-10" />
       </Link>
       <ul className="m-0 p-0 list-none flex gap-1 md:gap-4">
-        <li>
-          <Link to="/about" className="text-sm md:text-base text-inherit no-underline px-2 md:px-4">
-            About Us
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" className="text-sm md:text-base text-inherit no-underline px-2 md:px-4">
-            Contact
-          </Link>
-        </li>
+        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </ul>
     </nav>
   );
